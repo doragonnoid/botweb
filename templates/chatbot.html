@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Doragonnoid Chatbot</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- CropperJS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-robot"></i> Doragonnoid Chatbot</h1>
+        <p>Chatbot AI dengan berbagai fitur pintar!</p>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2><i class="fas fa-tools"></i> Pilih Fitur</h2>
+            <select id="feature-select">
+                <option value="chat">💬 Cari Teks</option>
+                <option value="image">🖼️ Unggah Gambar</option>
+                <option value="generate">🎨 Buat Gambar</option>
+            </select>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat-section" class="feature-section card">
+            <h2>💬 Chat dengan AI</h2>
+            <textarea id="chat-input" placeholder="Masukkan pertanyaan atau permintaan Anda..."></textarea>
+            <button id="chat-button"><i class="fas fa-search"></i> Kirim</button>
+        </section>
+
+        <!-- Image Upload -->
+        <section id="image-section" class="feature-section card" style="display:none;">
+            <h2>🖼️ Unggah & Analisis Gambar</h2>
+            <form id="imageForm">
+                <input type="file" id="imageInput" accept="image/*" required>
+                <textarea id="instruction" required>Baca hanya isi teks di dalam kotak merah.</textarea>
+                <button type="button" onclick="cropAndSend()"><i class="fas fa-upload"></i> Kirim Gambar Ter-crop</button>
+            </form>
+            <img id="preview" style="max-width: 100%; margin-top: 10px;">
+            <div id="resultArea"></div>
+        </section>
+
+        <!-- Hasil Chat -->
+        <section class="result card">
+            <h3>📄 Hasil</h3>
+            <textarea id="chat-result" rows="8" readonly></textarea>
+            <button onclick="speakText()"><i class="fas fa-volume-up"></i> Putar Suara</button>
+            <audio id="tts-audio" controls style="display:none;"></audio>
+        </section>
+
+        <!-- Generate Image -->
+        <section id="generate-section" class="feature-section" style="display:none;">
+            <h2>🎨 Buat Gambar AI</h2>
+            <input type="text" id="generate-input" placeholder="Deskripsi gambar...">
+            <button><i class="fas fa-magic"></i> Buat Gambar</button>
+        </section>
+
+        <!-- File Upload -->
+        <section id="file-section" class="feature-section card" style="display:none;">
+            <h2>📂 Analisis File</h2>
+            <input type="file" id="file-input" accept=".pdf,.docx,.txt,.csv,.xlsx,.pptx">
+            <button><i class="fas fa-file-alt"></i> Analisis File</button>
+        </section>
+
+        <!-- Premium -->
+        <section class="card">
+            <input type="text" id="email-input" placeholder="Masukkan email untuk verifikasi">
+            <button id="verify-button"><i class="fas fa-credit-card"></i> Verifikasi Akses Premium</button>
+            <p id="premium-status" class="premium">🌟 Mode Premium Tidak Aktif</p>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

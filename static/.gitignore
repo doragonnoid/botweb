@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+*.env
+
+# Flask Instance Folder
+instance/
+uploads/
+
+# VSCode
+.vscode/
+
+# Secrets
+secrets.toml
+
+# Node.js
+node_modules/
+package-lock.json
+
+# System Files
+.DS_Store
+Thumbs.db
